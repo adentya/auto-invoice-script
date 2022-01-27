@@ -5,10 +5,6 @@
 - Rename `cronerror.example.log` -> `cronerror.log`
 - Install semua requirements `pip install -r requirements.txt`
 - Sesuaikan semua preferences di `.env`
-- Sesuaikan data di file `template.docx`:
-  - company name
-  - nominal gaji
-  - bank details
 
 
 # Cron Script
