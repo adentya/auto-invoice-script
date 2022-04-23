@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 def send_email(invoice_no, month, filename, to, sender_name):
     smtp_server = os.getenv('EMAIL_SMTP_SERVER')
     port = os.getenv('EMAIL_PORT')
@@ -30,7 +32,7 @@ Regards,
     message['To'] = recipient_email
     message.attach(MIMEText(body, "plain"))
 
-    filepath = f'generated/{filename}'
+    filepath = '{}/generated/{}'.format(dir_path, filename)
 
     with open(filepath, 'rb') as attachment:
         part = MIMEBase("application", "octet-stream")

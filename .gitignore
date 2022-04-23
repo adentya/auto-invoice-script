@@ -1,5 +1,4 @@
 venv
 .env
-cronerror.log
-cronscript.sh
 __pycache__
+crontabtemp
