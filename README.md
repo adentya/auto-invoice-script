@@ -1,9 +1,6 @@
 # Installation
 
 - Rename `.env.example` -> `.env`
-- Rename `cronscript.example.sh` -> `cronscript.sh`
-  - Buka `cronscript.sh` dan ubah `/Users/username/your/path/to/script` sesuai dengan script path
-- Rename `cronerror.example.log` -> `cronerror.log`
 - Install semua requirements `pip install -r requirements.txt`
 - Sesuaikan semua preferences di `.env`
   - Detail Pengiriman: 
@@ -19,19 +16,12 @@
     - `BANK_ACCOUNT_NAME={Nama bank penerima e.g BCA (Bank Central Asia)}`
     - `BANK_ACCOUNT_NO={Nomor rekening}`
   - Detail Penagihan:
-    - `YOUR_COMPANY={Perusahaan tujuan e.g EngX1 Pte Ltd}`
+    - `YOUR_COMPANY={Perusahaan tujuan e.g PT Selalu Jaya}`
     - `YOUR_IDR_SALARY={Total gaji IDR e.g 1.000.000}`
   - Signature:
     - `YOUR_SIGN_NAME={Nama lengkap kamu}`
-
-
-# Cron Script
-
-Jalan setiap tanggal 27 jam 11 siang setiap bulannya.
-
-`0 11 27 * * /Users/username/absolute/path/script/cronscript.sh > /dev/null 2>&1`
-
-Ubah `/Users/username/absolute/path/script/cronscript.sh` sesuai path `cronscript.sh` berada.
+  - Cron Job (Jalan setiap tgl 27 jam 11 pagi setiap bulan):
+    - `CRON_JOB=0 11 27 * *`
 
 
 # Email Settings
