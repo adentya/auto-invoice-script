@@ -31,3 +31,13 @@ Karena emailer menggunakan Google smtp, pastikan **2-Step Verification** sudah d
 Atau bisa juga menggunakan **Google App Password**.
 
 https://support.google.com/accounts/answer/185833?hl=en
+
+# Start App
+
+Jalankan code berikut untuk memulai program:
+`./start.sh`
+
+Cron akan berjalan dan file `crontab` akan terupdate secara otomatis
+
+Untuk memeriksa daftar cron yang berjalan:
+`crontab -l`
