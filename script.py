@@ -13,7 +13,8 @@ import emailer
 
 load_dotenv()
 
-document = Document(os.getenv('TEMPLATE_FILE'))
+dir_path = os.path.dirname(os.path.realpath(__file__))
+document = Document("{}/{}".format(dir_path, os.getenv('TEMPLATE_FILE')))
 
 # INVOICE NO:
 first_table = document.tables[0]
@@ -22,7 +23,7 @@ current_date = datetime.now().strftime('%m%y')
 invoice_no_obj.paragraphs[0].text = None
 invoice_code = os.getenv('BANK_ID_CARD')[:5]
 company_code = os.getenv('YOUR_COMPANY')[:3].upper()
-invoice_no = f'{company_code}{invoice_code}{current_date}'
+invoice_no = '{}{}{}'.format(company_code, invoice_code, current_date)
 run = invoice_no_obj.paragraphs[0].add_run(invoice_no)
 run.font.color.rgb = RGBColor.from_string('9E9E9E')
 
@@ -76,22 +77,22 @@ bank_id_obj.text = bank_id + os.getenv('BANK_ID_CARD')
 # SIGNATURE IMAGE
 signature_image = 'signature.png'
 if os.getenv('YOUR_SIGN_IMAGE') and len(os.getenv('YOUR_SIGN_IMAGE')) \
-    and os.path.isfile(os.getenv('YOUR_SIGN_IMAGE')):
+    and os.path.isfile('{}/{}'.format(dir_path, os.getenv('YOUR_SIGN_IMAGE'))):
     signature_image = os.getenv('YOUR_SIGN_IMAGE')
 else:
     qr = qrcode.make(os.getenv('YOUR_SIGN_NAME'))
-    qr.save(signature_image)
+    qr.save('{}/{}'.format(dir_path, signature_image))
 signature_img_obj = document.paragraphs[26].add_run()
-signature_img_obj.add_picture(signature_image, height=Inches(1.0))
+signature_img_obj.add_picture('{}/{}'.format(dir_path, signature_image), height=Inches(1.0))
 
 # SIGNATURE
 signature_name_obj = document.paragraphs[28].text = os.getenv('YOUR_SIGN_NAME')
 
 # GENERATE FILE
 filename = 'Invoice_' + datetime.now().strftime('%b_%Y') + '.docx'
-document.save(f'./generated/{filename}')
+document.save('{}/generated/{}'.format(dir_path, filename))
 
-# SEND EMAIL
+SEND EMAIL
 emailer.send_email(
     invoice_no=invoice_no, 
     month=current_date, 
