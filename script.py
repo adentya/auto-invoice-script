@@ -92,7 +92,7 @@ signature_name_obj = document.paragraphs[28].text = os.getenv('YOUR_SIGN_NAME')
 filename = 'Invoice_' + datetime.now().strftime('%b_%Y') + '.docx'
 document.save('{}/generated/{}'.format(dir_path, filename))
 
-SEND EMAIL
+# SEND EMAIL
 emailer.send_email(
     invoice_no=invoice_no, 
     month=current_date, 
